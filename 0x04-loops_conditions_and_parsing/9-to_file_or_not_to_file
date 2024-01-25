@@ -17,7 +17,7 @@ then
 	if test -f school
 	then
 
-		echo "school i a regular file"
+		echo "school is a regular file"
 	fi
 else
 
