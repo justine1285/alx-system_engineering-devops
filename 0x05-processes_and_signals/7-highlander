@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+
+function signal_handler {
+	ecgo "I am invincible!!!"
+}
+trap 'signal_handler' SIGTERM
+
+
+while true
+do
+
+	echo "To infinity and beyond"
+	sleep 2
+
+done
