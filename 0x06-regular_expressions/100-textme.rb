@@ -4,7 +4,7 @@
 
 
 arg = ARGV[0] # gets first argument from terminal
-regex = /(?<=(?:from:to:|flags:))([a-zA-Z\-:+0-9]+)/ # creates search patterns
+regex = /(?<=(?:from:|to:|flags:))([a-zA-Z\-:+0-9]+)/ # creates search patterns
 
 
 matches = arg.scan(regex)
