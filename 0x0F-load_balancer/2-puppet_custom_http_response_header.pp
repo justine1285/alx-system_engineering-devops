@@ -2,7 +2,7 @@
 # and add a custom HTTP header
 
 exec { 'update system':
-	command => '/usr/bin/apt-get update',
+        command => '/usr/bin/apt-get update',
 }
 
 package { 'nginx':
@@ -21,7 +21,7 @@ exec {'redirect_me':
 
 exec {'HTTP header':
 	command => 'sed -i "25i\	add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default',
-	provide => 'shell'
+	provider => 'shell'
 }
 
 service {'nginx':
