@@ -2,11 +2,16 @@
 # duplicate web-01 to web-02
 # these scripts are an upgrade from the web-server scripts
 
+# uncomment to see the script run in action
+# set -x
+
+
 echo -e "Updating and doing some minor checks...\n"
 
 function install() {
 	command -v "$1" &> /dev/null
 
+	#shellcheck disable=SC2181
 	if [ $? -ne 0 ]; then
 		echo -e "	Installing: $1$\n"
 		sudo apt-get update -y -qq && \
@@ -17,12 +22,14 @@ function install() {
 	fi
 }
 
-install nginx
+install nginx #install nginx
 
 echo -e "\nSetting up some minor stuff.\n"
 
+# allowing nginx on firewall
 sudo ufw allow 'Nginx HTTP'
 
+# Give the user ownership to website files for easy editing
 if [ -d "/var/www" ]; then
 	sudo chown -R "$USER":"$USER" /var/www
 	sudo chmod -R 755 /var/www
@@ -32,6 +39,7 @@ else
 	sudo chmod -R 755 /var/www
 fi
 
+# create directories if not present
 for dir in /var/www/{html,eror}; do
 	if ! [ -d "$dir" ]; then
 		mkdir -p "$dir"
@@ -44,6 +52,7 @@ echo "Hello Wold!" > /var/www/html/index.html
 # create new error page
 echo "Ceci n'est pas une page" > /var/www/html/error_404.html
 
+# backup default server config file
 sudo cp /etc/nginx/sites-enabled/default nginx-sites-enabled_default.backup
 
 server_config=\

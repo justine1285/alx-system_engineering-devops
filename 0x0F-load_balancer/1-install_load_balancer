@@ -7,7 +7,7 @@ echo -e "Updating and doing some minor checks...\n"
 function install() {
 	command -v "$1" &> /dev/null
 
-	if [ $? ne 0 ]; then
+	if [ $? -ne 0 ]; then
 		echo -e "	Installing: $1\n"
 		sudo apt-get update -y -qq && \
 			sudo apt-get install -y "$1" -qq
@@ -32,11 +32,11 @@ defaults
   timeout server 15s
   timeout http-request 10s
 
-frontend clickviral-tech-frontend
+frontend justine1285-tech-frontend
     bind *:80
-    default_backend clickviral-tech-backend
+    default_backend justine1285-tech-backend
 
-backend clickviral-tech-backend
+backend justine1285-tech-backend
     balance roundrobin
     server 517697-web-01 100.25.12.87:80 check
     server 517697-web-02 100.26.18.153:80 check
