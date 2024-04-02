@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Configures a server to listening on pot 80 of all serves active IPv4 IPs
+
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
